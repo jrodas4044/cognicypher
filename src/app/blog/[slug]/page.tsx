@@ -6,10 +6,15 @@ import Link from "next/link";
 import Head from "next/head";
 
 export default function Post({ params }: { params: { slug: string } }) {
-  const markdown = fs.readFileSync(
-    path.join("markdown", `${params.slug}.md`),
-    "utf-8"
-  );
+  const markdownPath = path.join("markdown", `${params.slug}.md`);
+  let markdown;
+
+  try {
+    markdown = fs.readFileSync(markdownPath, "utf-8");
+  } catch (error) {
+    console.error(`Error al leer el archivo: ${markdownPath}`, error);
+    return <div>Error: No se encontró el artículo.</div>;
+  }
 
   const { data: frontmatter, content } = matter(markdown);
 
