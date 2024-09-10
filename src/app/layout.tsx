@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,7 +29,32 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <header className="flex justify-between items-center bg-gray-100 dark:bg-slate-800 shadow mb-10 p-4 rounded-lg">
+          <h1>
+            <Link href="/">Cognicypher</Link>
+          </h1>
+          <nav>
+            <ul className="flex gap-4">
+              <li>
+                <Link href="/">Inicio</Link>
+              </li>
+              <li>
+                <Link href="/blog/list">Blog</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+
         {children}
+
+        <footer>
+          <div className="flex flex-col justify-center items-center mx-auto py-10 container">
+            <p>© 2024 Todos los derechos reservados</p>
+            <p>
+              <a href="#">Cognicypher - Inteligencia Aplicada</a>
+            </p>
+          </div>
+        </footer>
       </body>
     </html>
   );
