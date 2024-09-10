@@ -5,11 +5,11 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-type Props = {
+export async function generateMetadata({
+  params,
+}: {
   params: { slug: string };
-};
-
-export async function generateMetadata(params: Props): Promise<Metadata> {
+}): Promise<Metadata> {
   const postsDirectory = path.join(process.cwd(), "markdown");
   const markdownPath = path.join(postsDirectory, `${params.slug}.md`);
   let markdown;
