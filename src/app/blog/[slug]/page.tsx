@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import Head from "next/head";
+import type { Metadata } from "next";
 
 export default function Post({ params }: { params: { slug: string } }) {
   const postsDirectory = path.join(process.cwd(), "markdown"); // Cambiado aquí
