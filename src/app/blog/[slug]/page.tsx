@@ -3,8 +3,53 @@ import path from "path";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
-import Head from "next/head";
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { slug: string };
+};
+
+export async function generateMetadata(params: Props): Promise<Metadata> {
+  const postsDirectory = path.join(process.cwd(), "markdown");
+  const markdownPath = path.join(postsDirectory, `${params.slug}.md`);
+  let markdown;
+  try {
+    markdown = fs.readFileSync(markdownPath, "utf-8");
+    const { data: frontmatter } = matter(markdown);
+    return {
+      title: frontmatter.title,
+      description: frontmatter.description,
+      keywords: frontmatter.tags.join(", "),
+      authors: [
+        {
+          name: "Jonhathan Rolando Rodas Lopez",
+          url: "https://jonhathanrodas.com",
+        },
+        {
+          name: "Cognicypher - Inteligencia Aplicada",
+          url: "https://cognicypher.com",
+        },
+      ],
+      openGraph: {
+        images: [
+          {
+            url: `https://cognicypher.com/images/blog/${params.slug}.png`,
+            width: 1200,
+            height: 630,
+          },
+        ],
+        type: "article",
+        siteName: "Cognicypher - Inteligencia Aplicada",
+        locale: "es-ES",
+        title: frontmatter.title,
+        description: frontmatter.description,
+      },
+    };
+  } catch (error) {
+    console.error(`Error al leer el archivo: ${markdownPath}`, error);
+    return <div>Error: No se encontró el artículo.</div>;
+  }
+}
 
 export default function Post({ params }: { params: { slug: string } }) {
   const postsDirectory = path.join(process.cwd(), "markdown"); // Cambiado aquí
@@ -21,20 +66,6 @@ export default function Post({ params }: { params: { slug: string } }) {
 
   return (
     <div className="mx-auto max-w-3xl dark:prose-invert container prose">
-      <Head>
-        <title>{frontmatter.title || "Blog de Cognicypher"}</title>
-        <meta name="description" content={frontmatter.description} />
-        <meta name="keywords" content={frontmatter.tags.join(", ")} />
-        <meta
-          name="author"
-          content="Jonhathan Rolando Rodas Lopez - Cognicypher"
-        />
-        <link
-          rel="canonical"
-          href={`https://cognicypher.com/blog/${params.slug}`}
-        />
-      </Head>
-
       <article className="mx-auto">
         <MDXRemote source={content} />
       </article>
