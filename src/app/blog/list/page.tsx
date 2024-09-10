@@ -3,7 +3,6 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import Link from "next/link";
-import Head from "next/head";
 
 const BlogList = () => {
   const postsDirectory = path.join("markdown");
@@ -22,22 +21,6 @@ const BlogList = () => {
 
   return (
     <div className="mx-auto px-4 py-8 container">
-      <Head>
-        <title>Lista de Artículos del Blog</title>
-        <meta
-          name="description"
-          content="Lista de artículos del blog de Cognicypher"
-        />
-        <meta
-          name="keywords"
-          content="blog, Cognicypher, artículos, tecnología"
-        />
-        <meta
-          name="author"
-          content="Jonhathan Rolando Rodas Lopez - Cognicypher"
-        />
-        <link rel="canonical" href="https://cognicypher.com/blog/list" />
-      </Head>
       <h1 className="mb-6 font-bold text-3xl">Lista de Artículos del Blog</h1>
       <ul className="space-y-4">
         {posts.map((post, index) => (

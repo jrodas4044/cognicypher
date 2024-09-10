@@ -72,24 +72,33 @@ export default function Post({ params }: { params: { slug: string } }) {
   const { data: frontmatter, content } = matter(markdown);
 
   return (
-    <div className="mx-auto max-w-3xl dark:prose-invert container prose">
-      <article className="mx-auto">
-        <MDXRemote source={content} />
-      </article>
+    <div className="bg-gradient-to-br from-gray-900 via-blue-950 to-teal-700 min-h-screen text-white">
+      <div className="mx-auto px-4 py-8 container">
+        <article className="bg-gray-900/80 shadow-lg backdrop-blur-sm mb-8 p-8 rounded-lg max-w-none prose-invert prose">
+          <MDXRemote source={content} />
+        </article>
 
-      <h3>Tags:</h3>
-      <div className="flex flex-wrap gap-2">
-        {frontmatter.tags.map((tag: string) => (
-          <span
-            key={tag}
-            className="bg-sky-700 px-2 py-1 rounded-md text-white"
+        <h3 className="mb-4 font-semibold text-2xl text-teal-300">
+          Etiquetas:
+        </h3>
+        <div className="flex flex-wrap gap-2 mb-6">
+          {frontmatter.tags.map((tag: string) => (
+            <span
+              key={tag}
+              className="bg-gradient-to-r from-teal-500 to-blue-600 px-3 py-1 rounded-full font-medium text-sm text-white"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <Link
+            href="/blog/list"
+            className="bg-gradient-to-r from-blue-500 hover:from-blue-600 to-teal-500 hover:to-teal-600 shadow-md hover:shadow-lg px-6 py-3 rounded-full font-bold text-white transition duration-300"
           >
-            {tag}
-          </span>
-        ))}
-
-        <div>
-          <Link href="/blog/list">Volver a la lista de artículos</Link>
+            Volver a la lista de artículos
+          </Link>
         </div>
       </div>
     </div>

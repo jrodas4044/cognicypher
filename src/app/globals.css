@@ -4,12 +4,12 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: linear-gradient(to bottom right, #000000, #000033);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: linear-gradient(to bottom right, #000000, #000033);
     --foreground: #ededed;
   }
 }
