@@ -47,7 +47,7 @@ export async function generateMetadata({
     };
   } catch (error) {
     console.error(`Error al leer el archivo: ${markdownPath}`, error);
-    return <div>Error: No se encontró el artículo.</div>;
+    return { title: "Error", description: "No se encontró el artículo." }; // Cambiado aquí
   }
 }
 
