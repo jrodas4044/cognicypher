@@ -51,6 +51,13 @@ export async function generateMetadata({
   }
 }
 
+export async function generateStaticParams() {
+  const postsDirectory = path.join(process.cwd(), "markdown");
+  const files = fs.readdirSync(postsDirectory);
+  const slugs = files.map((file) => file.replace(/\.md$/, ""));
+  return slugs.map((slug) => ({ slug }));
+}
+
 export default function Post({ params }: { params: { slug: string } }) {
   const postsDirectory = path.join(process.cwd(), "markdown"); // Cambiado aquí
   const markdownPath = path.join(postsDirectory, `${params.slug}.md`);
