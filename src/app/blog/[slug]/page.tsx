@@ -6,10 +6,9 @@ import Link from "next/link";
 import Head from "next/head";
 
 export default function Post({ params }: { params: { slug: string } }) {
-  const postsDirectory = path.join("markdown");
+  const postsDirectory = path.join(process.cwd(), "markdown"); // Cambiado aquí
   const markdownPath = path.join(postsDirectory, `${params.slug}.md`);
   let markdown;
-
   try {
     markdown = fs.readFileSync(markdownPath, "utf-8");
   } catch (error) {
