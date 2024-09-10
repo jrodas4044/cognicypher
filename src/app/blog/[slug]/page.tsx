@@ -13,6 +13,7 @@ export default function Post({ params }: { params: { slug: string } }) {
   try {
     markdown = fs.readFileSync(markdownPath, "utf-8");
   } catch (error) {
+    console.error(`Error al leer el archivo: ${markdownPath}`, error);
     return <div>Error: No se encontró el artículo.</div>;
   }
 
