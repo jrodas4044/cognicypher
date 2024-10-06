@@ -4,6 +4,7 @@ import "./globals.css";
 import Link from "next/link";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Image from "next/image";
+import Script from "next/script";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -186,6 +187,10 @@ export default function RootLayout({
         </footer>
       </body>
       <GoogleAnalytics gaId="G-JS4CV1B79S" />
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2597010418711064"
+      />
     </html>
   );
 }
