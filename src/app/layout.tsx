@@ -5,6 +5,7 @@ import Link from "next/link";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Image from "next/image";
 import Script from "next/script";
+import CookieConsent, { Cookies } from "react-cookie-consent";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -185,6 +186,18 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+
+        <CookieConsent
+          location="bottom"
+          buttonText="¡Claro que sí!"
+          style={{ background: "#2B373B" }}
+          buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+          expires={150}
+        >
+          Este sitio web utiliza cookies para mejorar la experiencia del
+          usuario.{" "}
+          <span style={{ fontSize: "10px" }}>Este texto es más pequeño :O</span>
+        </CookieConsent>
       </body>
       <GoogleAnalytics gaId="G-JS4CV1B79S" />
       <Script
