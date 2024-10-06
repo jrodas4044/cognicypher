@@ -5,7 +5,7 @@ import Link from "next/link";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Image from "next/image";
 import Script from "next/script";
-import CookieConsent, { Cookies } from "react-cookie-consent";
+import CookieConsent from "react-cookie-consent";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
