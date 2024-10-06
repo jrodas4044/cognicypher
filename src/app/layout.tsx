@@ -31,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="bg-gradient-to-r from-gray-900 via-blue-950 to-teal-700 shadow-lg p-6 rounded-lg">
+        <header className="bg-gradient-to-r from-gray-900 via-blue-950 to-teal-700 shadow-lg p-6">
           <div className="flex md:flex-row flex-col justify-between items-center">
             <h1 className="mb-4 md:mb-0 font-bold text-2xl text-teal-300">
               <Link
